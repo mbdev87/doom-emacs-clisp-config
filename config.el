@@ -87,14 +87,15 @@
         (">=" . ?≥)
         ("!=" . ?≠)))
 
-(add-hook 'emacs-lisp-mode-hook
+(add-hook 'lisp-mode-hook
           (lambda ()
-            (setq prettify-symbols-alist
-                  '(("lambda" . ?λ)
-                    ("defun" . ?ƒ)
-                    ("->" . ?→)))
-            (prettify-symbols-mode 1)))
-
+            (when (or (string-suffix-p ".lisp" buffer-file-name) ; Check if the file is a .lisp file
+                      (string-suffix-p ".lisp" (or buffer-file-name "")))
+              (setq prettify-symbols-alist
+                    '(("lambda" . ?λ)
+                      ("defun" . ?ƒ)
+                      ("->" . ?→)))
+              (prettify-symbols-mode 1))))
 
 
 (defun my/install-nerd-icons-fonts ()
