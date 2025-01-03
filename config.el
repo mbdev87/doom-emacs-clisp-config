@@ -94,3 +94,43 @@
                     ("defun" . ?ƒ)
                     ("->" . ?→)))
             (prettify-symbols-mode 1)))
+
+
+
+(defun my/install-nerd-icons-fonts ()
+  "Install Nerd Icons fonts if they are not already installed."
+  (interactive)
+  (unless (file-directory-p (expand-file-name "~/.local/share/fonts"))
+    (nerd-icons-install-fonts t))) ;; Pass 't' for no confirmation
+
+(add-hook 'after-init-hook #'my/install-nerd-icons-fonts)
+
+
+;; If you prefer slime: 
+;;(load (expand-file-name "~/.roswell/lisp/quicklisp/slime-helper.el"))
+;;;; Replace "sbcl" with the path to your implementation
+;;(setq inferior-lisp-program "sbcl")
+(setq inferior-lisp-program "ros -Q run")
+
+;;(slime-setup '(slime-fancy slime-repl slime-autodoc))
+
+;; Enable company-mode globally
+(after! company
+  (global-company-mode))
+
+;; Add SLY backend to company-mode
+(after! sly
+  (setq sly-company-backend 'sly-company)
+  (add-hook 'sly-mode-hook 'company-mode)
+  (add-hook 'sly-mrepl-mode-hook 'company-mode))
+
+(setq company-idle-delay 0.2)  ;; Time before suggestions pop up
+(setq company-minimum-prefix-length 1)  ;; Show suggestions after 1 character
+(setq company-tooltip-align-annotations t)
+
+(setq doom-font (font-spec :family "FiraCode Nerd Font" :size 14 :weight 'light)
+      doom-variable-pitch-font (font-spec :family "FiraCode Nerd Font" :size 14 :weight 'light))
+
+
+(setq doom-theme 'doom-gruvbox)
+
