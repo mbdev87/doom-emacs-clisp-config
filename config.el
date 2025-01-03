@@ -129,8 +129,8 @@
 (setq company-minimum-prefix-length 1)  ;; Show suggestions after 1 character
 (setq company-tooltip-align-annotations t)
 
-(setq doom-font (font-spec :family "FiraCode Nerd Font" :size 14 :weight 'light)
-      doom-variable-pitch-font (font-spec :family "FiraCode Nerd Font" :size 14 :weight 'light))
+(setq doom-font (font-spec :family "Fira Code" :size 14 :weight 'light)
+      doom-variable-pitch-font (font-spec :family "Fira Code" :size 14 :weight 'light))
 
 
 (setq doom-theme 'doom-gruvbox)
