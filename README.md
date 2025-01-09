@@ -1,21 +1,7 @@
 My common-lisp setup. 
 
 One trick you might find useful is displaying absolute and relative line numbers at the same time. 
-You can try adding this at the end of  your `config.el` 
-
-And you shoulud see: 
-
-```
-1 3
-2 2
-3 1
-4 4
-5 1
-6 2
-```
-😎
-
-`config.el` 
+You can try adding this at the end of  your `config.el`:
 
 ```common-lisp
 ;; Enable relative line numbers globally
@@ -33,3 +19,14 @@ And you shoulud see:
 
 ```
 
+And you shoulud see: 
+
+```
+1 3
+2 2
+3 1
+4 4
+5 1
+6 2
+```
+😎
