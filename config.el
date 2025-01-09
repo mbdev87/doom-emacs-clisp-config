@@ -32,11 +32,12 @@
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
 ;; `load-theme' function. This is the default:
-(setq doom-theme 'doom-one)
+(setq doom-theme 'doom-gruvbox)
 
 ;; This determines the style of line numbers in effect. If set to `nil', line
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
-(setq display-line-numbers-type t)
+;; (setq display-line-numbers-type 'relative) ;; Set relative line numbers
+;; Add the hybrid type for absolute on the current line
 
 ;; If you use `org' and don't want your org files in the default location below,
 ;; change `org-directory'. It must be set before org loads!
@@ -76,7 +77,7 @@
 ;; they are implemented.
 ;; Enable prettify-symbols-mode globally
 ;;
-(setq doom-font (font-spec :family "FiraCode Nerd Font" :size 14))
+(setq doom-font (font-spec :family "FiraCode Nerd Font" :size 12))
 
 (global-prettify-symbols-mode 1)
 (setq prettify-symbols-alist
@@ -129,9 +130,20 @@
 (setq company-minimum-prefix-length 1)  ;; Show suggestions after 1 character
 (setq company-tooltip-align-annotations t)
 
-(setq doom-font (font-spec :family "Fira Code" :size 14 :weight 'light)
-      doom-variable-pitch-font (font-spec :family "Fira Code" :size 14 :weight 'light))
+(setq doom-font (font-spec :family "Fira Code" :size 14);; :weight 'light)
+      doom-variable-pitch-font (font-spec :family "Fira Code" :size 12));; :weight 'light))
 
+;; Enable relative line numbers globally
+(setq display-line-numbers-type 'relative)
+(global-display-line-numbers-mode t)
 
-(setq doom-theme 'doom-gruvbox)
+;; Load and enable linum-mode everywhere
+(defun enable-linum-mode ()
+  "Enable linum-mode globally to display absolute line numbers alongside relative numbers."
+  (require 'linum) ;; Load linum library
+  (global-linum-mode t)) ;; Enable linum-mode globally
+
+;; Call this function after Doom Emacs loads
+(add-hook 'doom-init-ui-hook #'enable-linum-mode)
+
 
