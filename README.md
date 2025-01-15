@@ -30,3 +30,27 @@ And you shoulud see:
 6 2
 ```
 😎
+
+
+
+### For Portacle users (see portacle folder): 
+
+``` 
+;; Enable relative line numbers globally
+(setq display-line-numbers-type 'relative)
+(global-display-line-numbers-mode t)
+
+;; Load and enable linum-mode everywhere except treemacs
+(defun enable-linum-mode ()
+  "Enable linum-mode globally to display absolute line numbers alongside relative numbers,
+   but disable them in treemacs buffers."
+  (require 'linum) ;; Load linum library
+  (global-linum-mode t) ;; Enable linum-mode globally
+
+  ;; Disable linum-mode in treemacs
+  (add-hook 'treemacs-mode-hook (lambda () (linum-mode -1))))
+
+;; Call this function after Portacle loads
+(add-hook 'after-init-hook #'enable-linum-mode)
+
+```
